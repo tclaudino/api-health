@@ -2,7 +2,7 @@ FROM python:2
 
 MAINTAINER Essential Docketor <contact.ed.com>
 
-ADD api.py requirements.txt /
+ADD api_health.py requirements.txt /
 RUN pip install -r ./requirements.txt
 
 EXPOSE 5000
