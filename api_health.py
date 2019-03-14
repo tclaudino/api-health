@@ -36,9 +36,7 @@ def json_serial(obj):
 @app.route("/specialties")
 def specialties():
     array = '{"specialties": ["Clinico Geral", "Ginecologia", "Cardiologia"]}'
-    data  = json.loads(array)
-
-    return data;
+    return jsonify(array)
 
 
 #@app.route("/")
