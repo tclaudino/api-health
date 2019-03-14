@@ -8,14 +8,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from flaskext.mysql import MySQL
 
-#mysql = MySQL()
-#app = Flask(__name__)
-#app.config['MYSQL_DATABASE_USER'] = 'root'
-#app.config['MYSQL_DATABASE_PASSWORD'] = 'senhaFiap'
-#app.config['MYSQL_DATABASE_DB'] = 'fiapdb'
-#app.config['MYSQL_DATABASE_HOST'] = 'mysql'
-#app.config['CORS_HEADERS'] = 'Content-Type'
-#mysql.init_app(app)
+mysql = MySQL()
+app = Flask(__name__)
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'senhaFiap'
+app.config['MYSQL_DATABASE_DB'] = 'fiapdb'
+app.config['MYSQL_DATABASE_HOST'] = 'mysql'
+app.config['CORS_HEADERS'] = 'Content-Type'
+mysql.init_app(app)
 
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""
