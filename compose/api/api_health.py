@@ -11,8 +11,8 @@ from flaskext.mysql import MySQL
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'senhaFiap'
-app.config['MYSQL_DATABASE_DB'] = 'fiapdb'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'telemed'
+app.config['MYSQL_DATABASE_DB'] = 'telemed'
 app.config['MYSQL_DATABASE_HOST'] = 'mysql'
 app.config['CORS_HEADERS'] = 'Content-Type'
 mysql.init_app(app)
@@ -35,8 +35,17 @@ def json_serial(obj):
 
 @app.route("/specialties")
 def specialties():
-    array = '{"specialties": ["Clinico Geral", "Ginecologia", "Cardiologia"]}'
-    return jsonify(array)
+#    array = '{"specialties": ["Clinico Geral", "Ginecologia", "Cardiologia"]}'
+#    return jsonify(array)
+    try:
+        cursor = mysql.connect().cursor()
+        cursor.execute("SELECT * from Specialties")
+        r = [dict((cursor.description[i][0], value)
+            for i, value in enumerate(row)) for row in cursor.fetchall()]
+        json_string = json.dumps(r, default=json_serial)
+        return json_string
+    except Exception as e:
+        return 'Erro /getDados' + str(e) + traceback.format_exc()
 
 
 #@app.route("/")
