@@ -35,8 +35,17 @@ def json_serial(obj):
 
 @app.route("/specialties")
 def specialties():
-    array = '{"specialties": ["Clinico Geral", "Ginecologia", "Cardiologia"]}'
-    return jsonify(array)
+#    array = '{"specialties": ["Clinico Geral", "Ginecologia", "Cardiologia"]}'
+#    return jsonify(array)
+    try:
+        cursor = mysql.connect().cursor()
+        cursor.execute("SELECT * from Specialties")
+        r = [dict((cursor.description[i][0], value)
+            for i, value in enumerate(row)) for row in cursor.fetchall()]
+        json_string = json.dumps(r, default=json_serial)
+        return json_string
+    except Exception as e:
+        return 'Erro /getDados' + str(e) + traceback.format_exc()
 
 
 #@app.route("/")
