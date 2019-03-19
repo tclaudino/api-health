@@ -11,8 +11,8 @@ from flaskext.mysql import MySQL
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'senhaFiap'
-app.config['MYSQL_DATABASE_DB'] = 'fiapdb'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'telemed'
+app.config['MYSQL_DATABASE_DB'] = 'telemed'
 app.config['MYSQL_DATABASE_HOST'] = 'mysql'
 app.config['CORS_HEADERS'] = 'Content-Type'
 mysql.init_app(app)
